@@ -88,7 +88,7 @@ projeto-acidentes-transito/
 **1. Clone o repositório:**
 
 ```bash
-git clone https://github.com/SEU_USUARIO/projeto-acidentes-transito.git
+git clone https://github.com/YanGarcia/projeto-acidentes-transito.git
 ```
 
 **2. Acesse o diretório do projeto:**
@@ -232,11 +232,11 @@ streamlit run app.py
 
 | Recurso | URL |
 |---------|-----|
-| 🌐 **GitHub Pages** | `https://SEU_USUARIO.github.io/projeto-acidentes-transito/` |
-| 🚀 **Streamlit Cloud** | `https://SEU_USUARIO-projeto-acidentes-transito.streamlit.app/` |
-| 📦 **Repositório** | `https://github.com/SEU_USUARIO/projeto-acidentes-transito` |
+| 🌐 **GitHub Pages** | `https://YanGarcia.github.io/projeto-acidentes-transito/` |
+| 🚀 **Streamlit Cloud** | `https://YanGarcia-projeto-acidentes-transito.streamlit.app/` |
+| 📦 **Repositório** | `https://github.com/YanGarcia/projeto-acidentes-transito` |
 
-> 📌 *Substitua `SEU_USUARIO` pelo seu nome de usuário do GitHub.*
+> 📌 *Substitua `YanGarcia` pelo seu nome de usuário do GitHub.*
 
 ---
 
@@ -278,7 +278,7 @@ SOFTWARE.
 | **Curso** | Linguagens de Programação |
 | **Instituição** | *Nome da Instituição* |
 | **Contato** | *seu.email@exemplo.com* |
-| **GitHub** | [@SEU_USUARIO](https://github.com/SEU_USUARIO) |
+| **GitHub** | [@YanGarcia](https://github.com/YanGarcia) |
 
 ---
 
