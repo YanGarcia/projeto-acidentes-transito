@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projeto de Análise e Visualização de Acidentes de Trânsito no Brasil (2015-2024)">
+    <title>Acidentes de Trânsito no Brasil (2015-2024)</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0f0c29;
+            --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-color: #e0e0e0;
+            --text-light: #ffffff;
+            --text-muted: #a0a0c0;
+            --primary: #00d4ff;
+            --primary-gradient: linear-gradient(135deg, #00d4ff 0%, #0072ff 100%);
+            --accent: #ff6b35;
+            --accent-gradient: linear-gradient(135deg, #ff6b35 0%, #ff8c00 100%);
+            --font-main: 'Inter', sans-serif;
+            --glass-blur: blur(12px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-color);
+            background-image: var(--bg-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        header.scrolled {
+            background: rgba(15, 12, 41, 0.85);
+            backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--card-border);
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 6rem 0;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: var(--bg-color);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 212, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--card-border);
+            color: var(--text-light);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-light);
+            transform: translateY(-3px);
+        }
+
+        .hero-illustration {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            filter: blur(80px);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .hero-card {
+            width: 100%;
+            padding: 2.5rem;
+            position: relative;
+            z-index: 2;
+            transform: perspective(1000px) rotateY(-10deg) rotateX(10deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .hero-card:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+        }
+
+        /* Section general styling */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2 span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Sobre */
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .sobre-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Objetivos */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--bg-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .sobre-card {
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .sobre-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .sobre-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .sobre-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Base de Dados */
+        .db-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .db-features {
+            list-style: none;
+        }
+
+        .db-features li {
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .db-features i {
+            color: var(--primary);
+            margin-top: 0.25rem;
+        }
+
+        /* Tecnologias */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .tech-card {
+            padding: 1.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .tech-card i {
+            font-size: 2.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .tech-card p {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        /* Descobertas (KPIs) */
+        .kpis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .kpi-card {
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .kpi-num {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-card.accent .kpi-num {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kpi-card.primary .kpi-num {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kpi-label {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Visualizações */
+        .viz-card {
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .viz-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .viz-card h3 {
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .viz-card h3 i {
+            color: var(--primary);
+        }
+
+        .viz-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, rgba(48, 43, 99, 0.6) 0%, rgba(36, 36, 62, 0.6) 100%);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .cta .btn-group {
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+            background: rgba(15, 12, 41, 0.8);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        footer .links a {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .links a:hover {
+            color: var(--primary);
+        }
+
+        /* Animation utilities */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .hero-grid, .sobre-grid, .db-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.75rem;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .hero-card {
+                transform: none !important;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+
+            .cta {
+                padding: 2.5rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-car-burst"></i>
+                <span>TrânsitoAnalytica</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#objetivos">Objetivos</a></li>
+                    <li><a href="#dados">Dados</a></li>
+                    <li><a href="#descobertas">Descobertas</a></li>
+                    <li><a href="#visualizacoes">Gráficos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>
+                        Análise de <span>Acidentes de Trânsito</span> no Brasil
+                    </h1>
+                    <p>
+                        Uma exploração analítica aprofundada baseada em dados reais e simulados de 2015 a 2024. Identificando tendências temporais, causas principais e focos geográficos de acidentes nas rodovias federais.
+                    </p>
+                    <div class="btn-group">
+                        <a href="https://acidentes-transito-brasil.streamlit.app" target="_blank" class="btn btn-primary" id="btn-streamlit">
+                            <i class="fa-solid fa-chart-line"></i>
+                            Dashboard Interativo
+                        </a>
+                        <a href="https://github.com/SEU_USUARIO/projeto-acidentes-transito" target="_blank" class="btn btn-secondary" id="btn-github">
+                            <i class="fa-brands fa-github"></i>
+                            Ver no GitHub
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-illustration">
+                    <div class="hero-circle"></div>
+                    <div class="hero-card glass">
+                        <h4 style="color: var(--text-light); margin-bottom: 1rem;"><i class="fa-solid fa-chart-bar" style="color: var(--primary);"></i> Panorama Geral</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <p style="font-size: 0.85rem; color: var(--text-muted)">Anos Monitorados</p>
+                            <p style="font-size: 1.5rem; font-weight: 700; color: var(--text-light)">2015 — 2024</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.85rem; color: var(--text-muted)">Volume Analisado</p>
+                            <p style="font-size: 1.5rem; font-weight: 700; color: var(--primary)">172.190 <span style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted)">ocorrências</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre o Projeto -->
+    <section id="sobre" class="fade-in">
+        <div class="container">
+            <div class="sobre-grid">
+                <div class="sobre-image">
+                    <div class="glass" style="padding: 3rem; text-align: center; border-color: var(--primary)">
+                        <i class="fa-solid fa-laptop-code" style="font-size: 4rem; color: var(--primary); margin-bottom: 1.5rem;"></i>
+                        <h3 style="color: var(--text-light)">Linguagens de Programação</h3>
+                        <p style="color: var(--text-muted); margin-top: 0.5rem;">Projeto Prático G2 - Ciência de Dados & Desenvolvimento Web</p>
+                    </div>
+                </div>
+                <div class="sobre-content">
+                    <div class="section-title" style="text-align: left; margin-bottom: 2rem;">
+                        <h2>Sobre o <span>Projeto</span></h2>
+                    </div>
+                    <p>Este projeto consiste no desenvolvimento de uma aplicação analítica inovadora, combinando **Data Science** e **Web Development** para investigar o comportamento e a evolução dos acidentes nas rodovias brasileiras.</p>
+                    <p>Através do uso de inteligência analítica e ferramentas modernas como **Python, Pandas e Streamlit**, este dashboard serve como ferramenta de auxílio na formulação de políticas de segurança viária e conscientização.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objetivos -->
+    <section id="objetivos" class="fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos <span>Objetivos</span></h2>
+                <p>Identificar padrões e propor insights orientados a dados para salvar vidas.</p>
+            </div>
+            <div class="grid-3">
+                <div class="sobre-card glass">
+                    <div class="card-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <h3>Regiões Críticas</h3>
+                    <p>Mapear e rankear os estados, regiões e municípios com maiores índices de sinistralidade de trânsito.</p>
+                </div>
+                <div class="sobre-card glass">
+                    <div class="card-icon"><i class="fa-solid fa-clock"></i></div>
+                    <h3>Horários de Risco</h3>
+                    <p>Identificar as faixas horárias e períodos do dia onde os acidentes ocorrem com maior frequência e gravidade.</p>
+                </div>
+                <div class="sobre-card glass">
+                    <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <h3>Fatores Associados</h3>
+                    <p>Correlacionar acidentes com condições climáticas, tipos de rodovias e tipos de acidentes recorrentes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Base de Dados -->
+    <section id="dados" class="fade-in">
+        <div class="container">
+            <div class="db-grid">
+                <div class="db-info">
+                    <div class="section-title" style="text-align: left; margin-bottom: 2rem;">
+                        <h2>A Base de <span>Dados</span></h2>
+                    </div>
+                    <p style="margin-bottom: 2rem; font-size: 1.05rem;">
+                        Utilizamos um dataset estruturado e limpo representando de forma precisa o histórico nacional de acidentes das rodovias federais.
+                    </p>
+                    <ul class="db-features">
+                        <li><i class="fa-solid fa-circle-check"></i> <strong>8.880 Registros:</strong> Consolidados mensalmente por município e rodovia.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> <strong>15 Colunas/Variáveis:</strong> Dados geográficos, climáticos, temporais e de gravidade.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> <strong>Qualidade Excelente:</strong> Dados 100% preenchidos, sem nulos ou inconsistências.</li>
+                    </ul>
+                </div>
+                <div class="db-stats glass" style="padding: 2.5rem;">
+                    <h3 style="color: var(--text-light); margin-bottom: 1.5rem;">Variáveis Principais</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">
+                            <span>Geográficas</span>
+                            <span style="color: var(--primary)">Região, UF, Município, Rodovia</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">
+                            <span>Temporais</span>
+                            <span style="color: var(--primary)">Ano, Mês, Data, Período</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">
+                            <span>Métricas</span>
+                            <span style="color: var(--primary)">Acidentes, Feridos, Óbitos, Veículos</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem;">
+                            <span>Qualitativas</span>
+                            <span style="color: var(--primary)">Gravidade, Clima, Tipo Acidente</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tecnologias -->
+    <section class="fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tecnologias <span>Utilizadas</span></h2>
+                <p>O estado da arte das bibliotecas de análise de dados em ecossistema Python.</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card glass">
+                    <i class="fa-brands fa-python"></i>
+                    <p>Python</p>
+                </div>
+                <div class="tech-card glass">
+                    <i class="fa-solid fa-database"></i>
+                    <p>Pandas</p>
+                </div>
+                <div class="tech-card glass">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <p>Seaborn</p>
+                </div>
+                <div class="tech-card glass">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <p>Matplotlib</p>
+                </div>
+                <div class="tech-card glass">
+                    <i class="fa-solid fa-cubes"></i>
+                    <p>Streamlit</p>
+                </div>
+                <div class="tech-card glass">
+                    <i class="fa-solid fa-bezier-curve"></i>
+                    <p>Plotly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Descobertas (KPIs) -->
+    <section id="descobertas" class="fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Principais <span>Descobertas</span></h2>
+                <p>Números agregados vitais que ilustram a magnitude do problema no Brasil.</p>
+            </div>
+            <div class="kpis-grid">
+                <div class="kpi-card glass accent">
+                    <div class="kpi-num">172.190</div>
+                    <div class="kpi-label">Total de Acidentes</div>
+                </div>
+                <div class="kpi-card glass primary">
+                    <div class="kpi-num">120.374</div>
+                    <div class="kpi-label">Total de Feridos</div>
+                </div>
+                <div class="kpi-card glass accent">
+                    <div class="kpi-num">5.167</div>
+                    <div class="kpi-label">Vítimas Fatais (Óbitos)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualizações -->
+    <section id="visualizacoes" class="fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Estrutura das <span>Visualizações</span></h2>
+                <p>Gráficos que compõem o nosso dashboard analítico interativo.</p>
+            </div>
+            <div class="grid-3">
+                <div class="viz-card glass">
+                    <h3><i class="fa-solid fa-chart-line"></i> Linha Temporal</h3>
+                    <p>Acompanhe a variação anual de acidentes e óbitos ao longo da década (2015-2024) para identificar se há redução ou alta geral.</p>
+                </div>
+                <div class="viz-card glass">
+                    <h3><i class="fa-solid fa-chart-column"></i> Análise de UFs</h3>
+                    <p>Mapeamento de acidentes por estado (UFs), permitindo comparar quais entes federativos demandam maior foco regulatório viário.</p>
+                </div>
+                <div class="viz-card glass">
+                    <h3><i class="fa-solid fa-fire"></i> Heatmap de Períodos</h3>
+                    <p>Cruzamento de dados entre os períodos do dia (Manhã, Tarde, Noite, Madrugada) e meses do ano para descobrir as faixas de maior criticidade.</p>
+                </div>
+                <div class="viz-card glass">
+                    <h3><i class="fa-solid fa-cloud-sun-rain"></i> Distribuição Climática</h3>
+                    <p>Gráficos do tipo Pizza ilustrando o percentual de acidentes sob Sol, Nublado, Neblina e Chuva.</p>
+                </div>
+                <div class="viz-card glass">
+                    <h3><i class="fa-solid fa-table"></i> Tabela Dinâmica</h3>
+                    <p>Navegue de forma interativa por todos os dados detalhados agregando os filtros selecionados na interface do usuário.</p>
+                </div>
+                <div class="viz-card glass">
+                    <h3><i class="fa-solid fa-circle-exclamation"></i> Tipos de Acidentes</h3>
+                    <p>Visualização das causas primárias como tombamentos, colisões e capotamentos, indicando quais geram maiores taxas de fatalidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="container fade-in">
+        <div class="cta">
+            <h2>Explore os Dados Interativamente</h2>
+            <p>Acesse o dashboard completo online e filtre por Ano, Mês, Região, Estado, Gravidade, Clima e Tipo de Acidente.</p>
+            <div class="btn-group">
+                <a href="https://acidentes-transito-brasil.streamlit.app" target="_blank" class="btn btn-primary" id="cta-streamlit">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Ir para o Dashboard
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Projeto G2 - Análise de Acidentes de Trânsito no Brasil. Todos os direitos reservados.</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted)">Desenvolvido para fins acadêmicos na matéria de Linguagens de Programação.</p>
+            <div class="links">
+                <a href="https://github.com/SEU_USUARIO/projeto-acidentes-transito" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fa-solid fa-globe"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll behavior
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const options = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        fadeElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
