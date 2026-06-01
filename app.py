@@ -33,121 +33,145 @@ st.markdown("""
     /* Importar fonte */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-    /* Aplicar fonte global */
-    html, body, [class*="css"] {
+    /* Aplicar fonte global e background escuro global */
+    html, body, [class*="css"], .stApp {
         font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #0b091a 0%, #161233 50%, #201a47 100%) !important;
+        color: #f5f6fa !important;
     }
 
     /* Título principal */
     .main-title {
         font-size: 2.2rem;
         font-weight: 700;
-        color: #1a1a2e;
         text-align: center;
         padding: 0.5rem 0;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #00d4ff 0%, #9b5de5 50%, #f15bb5 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 0;
+        display: inline-block;
     }
 
     .subtitle {
-        font-size: 1rem;
-        color: #6c757d;
+        font-size: 1.05rem;
+        color: #a0a5c0;
         text-align: center;
         margin-bottom: 1.5rem;
         font-weight: 300;
     }
 
-    /* Cards de KPI */
+    /* Cards de KPI - Glassmorphism Premium */
     div[data-testid="stMetric"] {
-        background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
-        border: 1px solid #e0e4f5;
-        border-radius: 12px;
-        padding: 1rem 1.2rem;
-        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 16px !important;
+        padding: 1.2rem 1.5rem !important;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     }
 
     div[data-testid="stMetric"]:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+        transform: translateY(-4px) !important;
+        box-shadow: 0 12px 40px rgba(0, 212, 255, 0.15) !important;
+        border: 1px solid rgba(0, 212, 255, 0.3) !important;
     }
 
     div[data-testid="stMetric"] label {
-        color: #5a5f7a;
-        font-weight: 500;
-        font-size: 0.85rem;
+        color: #a0a5c0 !important;
+        font-weight: 500 !important;
+        font-size: 0.9rem !important;
+        letter-spacing: 0.5px;
     }
 
     div[data-testid="stMetric"] [data-testid="stMetricValue"] {
-        color: #1a1a2e;
-        font-weight: 700;
+        color: #ffffff !important;
+        font-weight: 800 !important;
+        font-size: 2rem !important;
     }
 
     /* Sidebar */
     section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+        background: linear-gradient(180deg, #090714 0%, #0f0c29 100%) !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
 
     section[data-testid="stSidebar"] .stMarkdown p,
     section[data-testid="stSidebar"] .stMarkdown h1,
     section[data-testid="stSidebar"] .stMarkdown h2,
     section[data-testid="stSidebar"] .stMarkdown h3 {
-        color: #e0e0e0;
+        color: #f5f6fa !important;
     }
 
     /* Separadores */
     hr {
         border: none;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #667eea, transparent);
-        margin: 1.5rem 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.4), transparent);
+        margin: 2rem 0;
     }
 
     /* Cabeçalhos de seção */
     .section-header {
-        font-size: 1.4rem;
-        font-weight: 600;
-        color: #1a1a2e;
-        border-left: 4px solid #667eea;
-        padding-left: 12px;
-        margin: 1.5rem 0 1rem 0;
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: #ffffff;
+        border-left: 4px solid #00d4ff;
+        padding-left: 14px;
+        margin: 2rem 0 1.2rem 0;
+        letter-spacing: 0.5px;
     }
 
     /* Cards de interpretação */
     .insight-card {
-        background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
-        border-left: 4px solid #667eea;
-        border-radius: 0 8px 8px 0;
-        padding: 1rem 1.2rem;
-        margin: 0.8rem 0;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        color: #2d3436;
+        background: rgba(102, 126, 234, 0.08);
+        border-left: 4px solid #00d4ff;
+        border-radius: 0 12px 12px 0;
+        padding: 1.2rem 1.4rem;
+        margin: 1rem 0;
+        font-size: 0.98rem;
+        line-height: 1.65;
+        color: #e0e6ed;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
 
     /* Conclusão executiva */
     .conclusion-card {
-        background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+        background: rgba(255, 152, 0, 0.08);
         border-left: 4px solid #ff9800;
-        border-radius: 0 8px 8px 0;
-        padding: 1.2rem 1.5rem;
-        margin: 1rem 0;
-        font-size: 0.95rem;
-        line-height: 1.7;
-        color: #2d3436;
+        border-radius: 0 12px 12px 0;
+        padding: 1.4rem 1.6rem;
+        margin: 1.2rem 0;
+        font-size: 0.98rem;
+        line-height: 1.75;
+        color: #ffe0b2;
+        box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+    }
+
+    /* Elementos Streamlit Expander, Selectbox, etc. */
+    .streamlit-expanderHeader {
+        background-color: rgba(255, 255, 255, 0.02) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        border-radius: 8px !important;
     }
 
     /* Tabs customizados */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
+        gap: 10px;
     }
 
     .stTabs [data-baseweb="tab"] {
         border-radius: 8px 8px 0 0;
-        padding: 8px 16px;
-        font-weight: 500;
+        padding: 10px 20px;
+        font-weight: 600;
+        color: #a0a5c0 !important;
+    }
+
+    .stTabs [data-baseweb="tab"][aria-selected="true"] {
+        color: #00d4ff !important;
+        background-color: rgba(255, 255, 255, 0.03) !important;
     }
 
     /* Esconder menu hamburger e footer */
@@ -307,7 +331,7 @@ df_filtrado = df[
 # =============================================================================
 # CABEÇALHO
 # =============================================================================
-st.markdown('<h1 class="main-title">🚗 Acidentes de Trânsito no Brasil</h1>', unsafe_allow_html=True)
+st.markdown('<h1 style="text-align: center; margin-bottom: 0;"><span style="font-size: 2.2rem;">🚗</span> <span class="main-title">Acidentes de Trânsito no Brasil</span></h1>', unsafe_allow_html=True)
 st.markdown(
     '<p class="subtitle">Análise exploratória e visualização de dados — 2015 a 2024</p>',
     unsafe_allow_html=True
@@ -385,10 +409,8 @@ st.markdown("---")
 # GRÁFICOS — Usando Plotly para interatividade
 # =============================================================================
 
-# Paleta de cores consistente
-CORES_PRIMARIAS = px.colors.qualitative.Set2
-CORES_SEQUENCIAIS = "Blues"
-CORES_DIVERGENTES = "RdYlGn_r"
+# Paleta de cores consistente de UI Moderna
+CORES_PRIMARIAS = ["#00d4ff", "#9b5de5", "#ff7675", "#00f5d4", "#f15bb5"]
 
 # ---------- GRÁFICO 1: EVOLUÇÃO TEMPORAL ----------
 st.markdown('<p class="section-header">📈 Evolução Temporal dos Acidentes</p>', unsafe_allow_html=True)
@@ -403,30 +425,31 @@ fig_temporal = go.Figure()
 fig_temporal.add_trace(go.Scatter(
     x=df_temporal["ano"], y=df_temporal["acidentes"],
     mode="lines+markers", name="Acidentes",
-    line=dict(color="#667eea", width=3),
+    line=dict(color="#00d4ff", width=3),
     marker=dict(size=8, symbol="circle"),
     hovertemplate="Ano: %{x}<br>Acidentes: %{y:,.0f}<extra></extra>"
 ))
 fig_temporal.add_trace(go.Scatter(
     x=df_temporal["ano"], y=df_temporal["feridos"],
     mode="lines+markers", name="Feridos",
-    line=dict(color="#f093fb", width=2, dash="dash"),
+    line=dict(color="#9b5de5", width=2, dash="dash"),
     marker=dict(size=6),
     hovertemplate="Ano: %{x}<br>Feridos: %{y:,.0f}<extra></extra>"
 ))
 fig_temporal.add_trace(go.Scatter(
     x=df_temporal["ano"], y=df_temporal["obitos"],
     mode="lines+markers", name="Óbitos",
-    line=dict(color="#e74c3c", width=2, dash="dot"),
+    line=dict(color="#ff7675", width=2, dash="dot"),
     marker=dict(size=6),
     yaxis="y2",
     hovertemplate="Ano: %{x}<br>Óbitos: %{y:,.0f}<extra></extra>"
 ))
 fig_temporal.update_layout(
+    template="plotly_dark",
     title=None,
-    xaxis=dict(title="Ano", dtick=1),
-    yaxis=dict(title="Acidentes / Feridos", gridcolor="#f0f0f0"),
-    yaxis2=dict(title="Óbitos", overlaying="y", side="right", gridcolor="#f0f0f0"),
+    xaxis=dict(title="Ano", dtick=1, gridcolor="rgba(255,255,255,0.05)"),
+    yaxis=dict(title="Acidentes / Feridos", gridcolor="rgba(255,255,255,0.05)"),
+    yaxis2=dict(title="Óbitos", overlaying="y", side="right", gridcolor="rgba(255,255,255,0.05)"),
     legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5),
     plot_bgcolor="rgba(0,0,0,0)",
     paper_bgcolor="rgba(0,0,0,0)",
@@ -450,17 +473,19 @@ with col_geo1:
         df_estado, x="acidentes", y="uf",
         orientation="h",
         color="acidentes",
-        color_continuous_scale="Blues",
+        color_continuous_scale=["#161233", "#00d4ff"],
         labels={"acidentes": "Total de Acidentes", "uf": "Estado"},
         title="Acidentes por Estado"
     )
     fig_estado.update_layout(
+        template="plotly_dark",
         height=500,
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
         coloraxis_showscale=False,
         margin=dict(l=40, r=20, t=40, b=40),
-        yaxis=dict(tickfont=dict(size=11))
+        yaxis=dict(tickfont=dict(size=11), gridcolor="rgba(255,255,255,0.05)"),
+        xaxis=dict(gridcolor="rgba(255,255,255,0.05)")
     )
     st.plotly_chart(fig_estado, use_container_width=True, key="chart_estado")
 
@@ -479,11 +504,14 @@ with col_geo2:
         title="Acidentes por Região"
     )
     fig_regiao.update_layout(
+        template="plotly_dark",
         height=500,
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
         showlegend=False,
-        margin=dict(l=40, r=20, t=40, b=40)
+        margin=dict(l=40, r=20, t=40, b=40),
+        xaxis=dict(gridcolor="rgba(255,255,255,0.05)"),
+        yaxis=dict(gridcolor="rgba(255,255,255,0.05)")
     )
     st.plotly_chart(fig_regiao, use_container_width=True, key="chart_regiao")
 
@@ -500,16 +528,19 @@ with col_tipo1:
     fig_tipo = px.bar(
         df_tipo, x="tipo_acidente", y="acidentes",
         color="tipo_acidente",
-        color_discrete_sequence=["#667eea", "#764ba2", "#f093fb", "#5dade2", "#48dbfb"],
+        color_discrete_sequence=CORES_PRIMARIAS,
         labels={"acidentes": "Total de Acidentes", "tipo_acidente": "Tipo de Acidente"},
         title="Acidentes por Tipo"
     )
     fig_tipo.update_layout(
+        template="plotly_dark",
         height=420,
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
         showlegend=False,
-        margin=dict(l=40, r=20, t=40, b=40)
+        margin=dict(l=40, r=20, t=40, b=40),
+        xaxis=dict(gridcolor="rgba(255,255,255,0.05)"),
+        yaxis=dict(gridcolor="rgba(255,255,255,0.05)")
     )
     st.plotly_chart(fig_tipo, use_container_width=True, key="chart_tipo")
 
@@ -518,7 +549,13 @@ with col_tipo2:
     df_clima = df_filtrado.groupby("condicao_climatica")["acidentes"].sum().reset_index()
     fig_clima = px.pie(
         df_clima, values="acidentes", names="condicao_climatica",
-        color_discrete_sequence=["#667eea", "#f9ca24", "#a0a0a0", "#5dade2"],
+        color="condicao_climatica",
+        color_discrete_map={
+            "Chuva": "#9b5de5",
+            "Ensolarado": "#fee440",
+            "Neblina": "#636e72",
+            "Nublado": "#00d4ff"
+        },
         title="Distribuição por Condição Climática",
         hole=0.35
     )
@@ -528,6 +565,7 @@ with col_tipo2:
         hovertemplate="%{label}: %{value:,.0f} acidentes (%{percent})<extra></extra>"
     )
     fig_clima.update_layout(
+        template="plotly_dark",
         height=420,
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
@@ -562,15 +600,17 @@ fig_heatmap = px.imshow(
     labels=dict(x="Mês", y="Período do Dia", color="Acidentes"),
     x=meses_presentes,
     y=periodos_presentes,
-    color_continuous_scale="YlOrRd",
+    color_continuous_scale=["#161233", "#9b5de5", "#00d4ff"],
     aspect="auto"
 )
 fig_heatmap.update_layout(
+    template="plotly_dark",
     height=350,
     plot_bgcolor="rgba(0,0,0,0)",
     paper_bgcolor="rgba(0,0,0,0)",
     margin=dict(l=100, r=20, t=20, b=60),
-    xaxis=dict(tickangle=45)
+    xaxis=dict(tickangle=45, gridcolor="rgba(255,255,255,0.05)"),
+    yaxis=dict(gridcolor="rgba(255,255,255,0.05)")
 )
 fig_heatmap.update_traces(
     hovertemplate="Mês: %{x}<br>Período: %{y}<br>Acidentes: %{z:,.0f}<extra></extra>"
@@ -596,15 +636,18 @@ with col_extra1:
         x="acidentes", y="municipio",
         orientation="h",
         color="obitos",
-        color_continuous_scale="OrRd",
+        color_continuous_scale=["#ff7675", "#ff2a2a"],
         labels={"acidentes": "Total de Acidentes", "municipio": "Município", "obitos": "Óbitos"},
         title="Top 15 Municípios Mais Críticos"
     )
     fig_muni.update_layout(
+        template="plotly_dark",
         height=480,
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
-        margin=dict(l=120, r=20, t=40, b=40)
+        margin=dict(l=120, r=20, t=40, b=40),
+        xaxis=dict(gridcolor="rgba(255,255,255,0.05)"),
+        yaxis=dict(gridcolor="rgba(255,255,255,0.05)")
     )
     st.plotly_chart(fig_muni, use_container_width=True, key="chart_municipio")
 
@@ -626,17 +669,18 @@ with col_extra2:
     fig_grav = go.Figure()
     fig_grav.add_trace(go.Bar(
         x=df_gravidade["nivel_gravidade"], y=df_gravidade["acidentes"],
-        name="Acidentes", marker_color="#667eea"
+        name="Acidentes", marker_color="#00d4ff"
     ))
     fig_grav.add_trace(go.Bar(
         x=df_gravidade["nivel_gravidade"], y=df_gravidade["feridos"],
-        name="Feridos", marker_color="#f093fb"
+        name="Feridos", marker_color="#9b5de5"
     ))
     fig_grav.add_trace(go.Bar(
         x=df_gravidade["nivel_gravidade"], y=df_gravidade["obitos"],
-        name="Óbitos", marker_color="#e74c3c"
+        name="Óbitos", marker_color="#ff7675"
     ))
     fig_grav.update_layout(
+        template="plotly_dark",
         title="Distribuição por Nível de Gravidade",
         barmode="group",
         height=480,
@@ -644,8 +688,8 @@ with col_extra2:
         paper_bgcolor="rgba(0,0,0,0)",
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5),
         margin=dict(l=40, r=20, t=60, b=40),
-        xaxis_title="Nível de Gravidade",
-        yaxis_title="Quantidade"
+        xaxis=dict(title="Nível de Gravidade", gridcolor="rgba(255,255,255,0.05)"),
+        yaxis=dict(title="Quantidade", gridcolor="rgba(255,255,255,0.05)")
     )
     st.plotly_chart(fig_grav, use_container_width=True, key="chart_gravidade")
 
