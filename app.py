@@ -19,7 +19,7 @@ from plotly.subplots import make_subplots
 # CONFIGURAÇÃO DA PÁGINA
 # =============================================================================
 st.set_page_config(
-    page_title="🚗 Acidentes de Trânsito no Brasil",
+    page_title="Acidentes de Trânsito no Brasil",
     page_icon="🚗",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -423,7 +423,7 @@ fig_temporal.add_trace(go.Scatter(
     hovertemplate="Ano: %{x}<br>Óbitos: %{y:,.0f}<extra></extra>"
 ))
 fig_temporal.update_layout(
-    title=None,
+    title="",
     xaxis=dict(title="Ano", dtick=1),
     yaxis=dict(title="Acidentes / Feridos", gridcolor="#f0f0f0"),
     yaxis2=dict(title="Óbitos", overlaying="y", side="right", gridcolor="#f0f0f0"),
