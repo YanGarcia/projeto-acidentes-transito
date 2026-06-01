@@ -381,7 +381,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown(
         "<p style='text-align:center; font-size:0.75rem; color:#8a8a8a;'>"
-        "Projeto G2 — Linguagens de Programação<br>2025</p>",
+        "Projeto G2 — Linguagens de Programação<br>2026</p>",
         unsafe_allow_html=True
     )
 
