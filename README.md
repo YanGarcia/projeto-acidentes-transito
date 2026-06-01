@@ -19,6 +19,22 @@ Projeto acadêmico de **análise e visualização de dados de acidentes de trân
 
 ---
 
+## 📌 Principais Números (agregados)
+
+- **Total de acidentes:** 172.190
+- **Total de feridos:** 120.374
+- **Total de óbitos:** 5.167
+- **Região com mais acidentes:** Sudeste (60.442)
+- **Estado com mais acidentes:** RJ (18.572)
+- **Período com maior volume de acidentes:** Tarde (44.487) — também apresenta a maior taxa média de letalidade (~3,21%)
+- **Condição climática com mais acidentes:** Ensolarado (70.634)
+- **Condição climática com maior taxa de letalidade:** Nublado (~3,14%)
+- **Tipos de acidente mais frequentes:** Saída de pista (35.633), Atropelamento (34.450), Colisão (34.097)
+
+> Observação: valores obtidos a partir de `dados/simulacao_acidentes_transito_brasil.csv` — mantidos atualizados pelos scripts de análise.
+
+---
+
 ## 📸 Screenshots
 
 | Tela | Descrição |
