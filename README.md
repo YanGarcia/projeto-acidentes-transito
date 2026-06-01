@@ -6,14 +6,13 @@
   <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
   <img src="https://img.shields.io/badge/Streamlit-1.30+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit"/>
   <img src="https://img.shields.io/badge/Pandas-2.0+-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas"/>
-  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License"/>
 </p>
 
 ---
 
 ## 📋 Descrição
 
-Projeto acadêmico de **análise e visualização de dados de acidentes de trânsito no Brasil**, desenvolvido como trabalho da disciplina de Linguagens de Programação. O projeto utiliza **Python**, **Pandas**, **Matplotlib**, **Seaborn** e **Streamlit** para construir um **dashboard interativo** com KPIs, filtros dinâmicos e gráficos analíticos, permitindo explorar padrões e tendências nos dados de acidentes no período de 2015 a 2024.
+Projeto acadêmico de **análise e visualização de dados de acidentes de trânsito no Brasil**, desenvolvido como trabalho da disciplina de Linguagens de Programação. O projeto utiliza **Python**, **Pandas**, **Streamlit**, **Plotly**, **Matplotlib** e **Seaborn** para construir um **dashboard interativo** com KPIs, filtros dinâmicos e gráficos analíticos, permitindo explorar padrões e tendências nos dados de acidentes no período de 2015 a 2024.
 
 > 💡 O dashboard oferece uma visão completa dos dados, com indicadores-chave de desempenho (KPIs), filtros interativos por múltiplas dimensões e interpretações textuais automáticas dos resultados.
 
@@ -72,9 +71,10 @@ projeto-acidentes-transito/
 ├── index.html                # GitHub Pages
 ├── dados/
 │   └── simulacao_acidentes_transito_brasil.csv
+├── gerar_notebook.py         # Gerador de notebook automático
 ├── notebooks/
 │   └── analise_acidentes.ipynb
-├── database/
+├── database/                 # Diretório para armazenamento de dados processados
 └── imagens/
 ```
 
@@ -84,6 +84,7 @@ projeto-acidentes-transito/
 | `requirements.txt` | Lista de dependências Python |
 | `index.html` | Página estática para GitHub Pages |
 | `dados/` | Diretório com a base de dados CSV |
+| `gerar_notebook.py` | Script que gera o notebook de análise automaticamente |
 | `notebooks/` | Jupyter Notebooks com análises exploratórias |
 | `database/` | Diretório para armazenamento de dados processados |
 | `imagens/` | Capturas de tela e recursos visuais |
