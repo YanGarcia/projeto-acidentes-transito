@@ -282,17 +282,27 @@ plt.show()"""))
 
 # 9. Interpretação
 cells.append(nbf.v4.new_markdown_cell("""### 9. Interpretação dos Resultados
-- **Evolução Temporal**: Nota-se uma flutuação com tendência estável ou leve declínio dependendo das condições, caracterizando a necessidade de melhorias de fiscalização constantes.
-- **Geografia**: O estado de Minas Gerais ou São Paulo tende a se destacar (dependendo dos filtros da UF mais crítica), e regionalmente o Sudeste ou Nordeste concentram os maiores volumes devido à frota concentrada e densidade populacional.
-- **Tipologia**: Colisões e Tombamentos são eventos de extrema gravidade e frequência alta.
-- **Clima**: A maioria dos acidentes ocorre em clima "Ensolarado" pela maior exposição e velocidades elevadas, porém os acidentes sob "Chuva" e "Neblina" mostram proporcionalmente maior taxa de letalidade e severidade.
-- **Períodos**: O período da Tarde e Noite é historicamente o mais volumoso em sinistros viários."""))
+- **Panorama geral:** No conjunto de dados analisado foram registrados **172.190 acidentes**, **120.374 feridos** e **5.167 óbitos**.
+- **Evolução temporal:** A série anual é essencialmente estável — 2015 teve 17.067 acidentes e 2024 teve 17.189 (variação ≈ 0,7%).
+- **Região / Estado:** A região com maior volume é o **Sudeste** (60.442 acidentes) e o estado com maior número absoluto é **Rio de Janeiro (RJ: 18.572)**.
+- **Períodos:** O maior volume de acidentes ocorre na **Tarde** (44.487), seguido por **Madrugada** (43.321). A **Tarde** também apresenta a maior taxa média de letalidade (óbitos/acidentes ≈ 3,21%).
+- **Clima:** **Ensolarado** concentra o maior número absoluto de acidentes (70.634), mas a maior taxa de letalidade por condição climática ocorre em **Nublado** (≈ 3,14%); Neblina e Chuva têm taxas próximas.
+- **Tipos de acidente:** Os mais frequentes são **Saída de pista** (35.633), **Atropelamento** (34.450) e **Colisão** (34.097); Tombamento e Capotamento também aparecem entre os mais comuns.
+- **Gravidade:** A maioria das ocorrências é classificada como Moderado, enquanto categorias Grave/Crítico concentram maior severidade.
+
+> Observação: as interpretações foram atualizadas para refletir agregados numéricos (contagens e taxas). Sempre que possível prefira apontar valores/percentuais em vez de afirmações qualitativas.
+"""))
 
 # 10. Conclusão
 cells.append(nbf.v4.new_markdown_cell("""### 10. Conclusão
-Os acidentes de trânsito representam um grande gargalo na infraestrutura de transportes brasileira. Mapear estes sinistros permitiu concluir que a letalidade está diretamente associada ao período noturno/madrugada e fatores de excesso de velocidade comuns em vias ensolaradas de pista simples.
+Com base nos dados agregados (172.190 acidentes e 5.167 óbitos), apresentamos as principais conclusões e recomendações quantitativas:
 
-Recomendamos a intensificação de radares fixos inteligentes nos 15 municípios críticos mapeados, campanhas publicitárias veiculadas em vésperas de feriados focando no perigo de pistas molhadas e ampliação das equipes de socorro médico emergencial próximas às rodovias com maior frequência de acidentes graves."""))
+- **Síntese:** O cenário exige intervenções direcionadas por volume e por letalidade. A Tarde concentra o maior volume de acidentes e a maior taxa média de letalidade; o Sudeste e o estado do RJ merecem atenção por volume absoluto.
+- **Recomendações operacionais:** intensificar fiscalização e campanhas educativas nos estados/municípios de maior volume (ex.: RJ e municípios do top), priorizar ações no período da Tarde, e implantar medidas específicas para reduzir 'Saída de pista' e 'Atropelamento'.
+- **Infraestrutura e resposta:** investir em melhorias de infraestrutura nas rodovias críticas, ampliar cobertura de socorro médico emergencial e monitorar impacto das intervenções por meio de métricas (queda da taxa de letalidade e redução de acidentes por município).
+
+As recomendações acima foram formuladas para alinhar ações às evidências estatísticas observadas e devem ser refinadas localmente com dados contextuais adicionais.
+"""))
 
 # Anexar as células ao notebook
 nb['cells'] = cells
