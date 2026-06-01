@@ -450,7 +450,6 @@ fig_temporal.update_layout(
     yaxis=dict(title="Acidentes / Feridos", gridcolor="#f0f0f0"),
     yaxis2=dict(title="Óbitos", overlaying="y", side="right", gridcolor="#f0f0f0"),
     template="plotly_dark",
-    title="",
     xaxis=dict(title="Ano", dtick=1, gridcolor="rgba(255,255,255,0.05)"),
     yaxis=dict(title="Acidentes / Feridos", gridcolor="rgba(255,255,255,0.05)"),
     yaxis2=dict(title="Óbitos", overlaying="y", side="right", gridcolor="rgba(255,255,255,0.05)"),
