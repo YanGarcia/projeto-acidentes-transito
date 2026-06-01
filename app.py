@@ -174,6 +174,92 @@ st.markdown("""
         background-color: rgba(255, 255, 255, 0.03) !important;
     }
 
+    /* FORCE DARK THEME EM TODOS OS ELEMENTOS */
+    h1, h2, h3, h4, h5, h6 {
+        color: #ffffff !important;
+    }
+
+    p, span, div, a, label {
+        color: #f5f6fa !important;
+    }
+
+    /* Markdown content */
+    .stMarkdown {
+        color: #f5f6fa !important;
+    }
+
+    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, 
+    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+        color: #ffffff !important;
+    }
+
+    .stMarkdown p, .stMarkdown span, .stMarkdown div {
+        color: #f5f6fa !important;
+    }
+
+    /* Text elements */
+    [data-testid="stText"] {
+        color: #f5f6fa !important;
+    }
+
+    [data-testid="stHeading"] {
+        color: #ffffff !important;
+    }
+
+    /* Gráficos Plotly - força cores de texto escuras */
+    .plotly-graph-div {
+        filter: brightness(1.1);
+    }
+
+    .js-plotly-plot .plotly-graph-div text {
+        fill: #ffffff !important;
+        color: #ffffff !important;
+    }
+
+    /* Estilos de barra de gráficos */
+    .plotly-graph-div .xtick text,
+    .plotly-graph-div .ytick text,
+    .plotly-graph-div .gtitle,
+    .plotly-graph-div .g-title {
+        color: #ffffff !important;
+        fill: #ffffff !important;
+    }
+
+    /* Labels do Plotly */
+    .plotly-graph-div .xaxislabel-text,
+    .plotly-graph-div .yaxislabel-text {
+        fill: #ffffff !important;
+        color: #ffffff !important;
+    }
+
+    /* Legendas */
+    .plotly-graph-div .legend text {
+        fill: #ffffff !important;
+        color: #ffffff !important;
+    }
+
+    /* SVG text elements */
+    svg text {
+        color: #ffffff !important;
+        fill: #ffffff !important;
+    }
+
+    /* Input e selecionar elementos */
+    input, select, textarea {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        color: #f5f6fa !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    input::placeholder {
+        color: #a0a5c0 !important;
+    }
+
+    /* Botões */
+    button {
+        color: #f5f6fa !important;
+    }
+
     /* Esconder menu hamburger e footer */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
