@@ -34,19 +34,6 @@ Projeto acadêmico de **análise e visualização de dados de acidentes de trân
 
 ---
 
-## 📸 Screenshots
-
-| Tela | Descrição |
-|------|-----------|
-| **Dashboard Principal** | Visão geral com KPIs, gráficos de tendência temporal e distribuição por estado |
-| **Filtros Interativos** | Painel lateral com filtros por ano, estado, tipo de acidente, condição climática e mais |
-| **Gráficos Analíticos** | Gráficos de barras, linhas, pizza e heatmaps para análise aprofundada |
-| **Tabela Dinâmica** | Tabela interativa com os dados filtrados e opção de download |
-| **Conclusão Executiva** | Seção com interpretação textual e principais insights extraídos dos dados |
-
-
----
-
 ## 🔧 Tecnologias
 
 | Tecnologia | Versão | Descrição |
